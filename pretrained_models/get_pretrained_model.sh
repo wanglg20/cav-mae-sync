@@ -1,0 +1,1 @@
+wget --no-check-certificate "https://drive.usercontent.google.com/download?id=1KBCvDcEJ5l7WtRXVQZC6TJNUpY4L6UZo&export=download&authuser=0&confirm=t&uuid=0157b121-1a68-47b8-b18c-85da46cc8a7c&at=ALoNOgnSndW4Mb2dwK97jXgZfnoN:1747818340710" -O cav_mae_sync.pth
