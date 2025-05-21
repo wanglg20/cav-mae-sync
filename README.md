@@ -5,7 +5,7 @@ by [Edson Araujo](https://edsonroteia.github.io/), [Andrew Rouditchenko](https:/
 📚 [arXiv preprint](https://arxiv.org/abs/2505.01237) | 🖥️ [Project webpage](https://edsonroteia.github.io/cav-mae-sync)
 
 - ✨ The paper has been accepted at CVPR 2025!
-- 🚀 Code and pretrained models for retrieval are here! 
+- 🚀 Code and pretrained models for retrieval on VGGSound are here! 
 - 🚧 Classification/Localization codes and models coming soon!
 
 
