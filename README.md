@@ -45,7 +45,7 @@ pip install -r requirements.txt
 For preparing your data (audio, frames, and label files), **follow the original CAV-MAE instructions here:**  
 https://github.com/YuanGongND/cav-mae#data-preparation
 
-This ensures your data is in the correct format for CAV-MAE Sync. No changes are needed—just use the same process as the original repo.
+This ensures your data is in the correct format for CAV-MAE Sync. No changes are needed, just use the same process as the original repo.
 
 
 ## 🚀 Retrieval
@@ -89,7 +89,7 @@ Where:
 
 > **Dataset Size Note:** The VGGSound subset used here contains about 1520 samples. If you set `--nums_samples` greater than this, the script will just use the entire dataset (i.e., all available samples are evaluated).
 
-> **Note:** Computing the similarity matrix in this (non-parallelized) code can take up to 40 minutes for the full retrieval result. For quick tests, reduce `--nums_samples` to a smaller value (e.g., 100 or 500).
+> **Note:** Computing the similarity matrix in this (non-parallelized) code can take up to 40 minutes for the full retrieval result. For quick tests, reduce `--nums_samples` to a smaller value (e.g., 100 or 500). Alternatively, it is possible to optimize this large matrix multiplication. (Gladly accepting PRs!)
 
 
 ## 📌 Citation
