@@ -4,6 +4,7 @@ by [Edson Araujo](https://edsonroteia.github.io/), [Andrew Rouditchenko](https:/
 
 📚 [arXiv preprint](https://arxiv.org/abs/2505.01237) | 🖥️ [Project webpage](https://edsonroteia.github.io/cav-mae-sync)
 
+- 📰 Our work was featured [on MIT News](https://news.mit.edu/2025/ai-learns-how-vision-and-sound-are-connected-without-human-intervention-0522)! 
 - ✨ The paper has been accepted at CVPR 2025!
 - 🚀 Code and pretrained models for retrieval on VGGSound are here! 
 - 🚧 Classification/Localization codes and models coming soon!
