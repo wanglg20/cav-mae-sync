@@ -59,6 +59,20 @@ class Block(nn.Module):
 # our main proposed model, for pretraining only, for finetuning, use CAVMAEFT class
 class CAVMAE(nn.Module):
     """ CAV-MAE Model
+    modified from the original CAV-MAE by Yuan Gong.
+
+    Newly Introduced Params Usage:
+    - `audio_length`: 416 by default, align with the 4-second audio segments.
+       according to the original CAV-MAE-Sync experiments,1 frames image: 4 seconds audio yields optimal performance.
+    - 'num_register_tokens': 8 by default, number of register tokens to use.
+       introducing register token increase AudioSet-Classification performance by 3.7% on average.(27.1% -> 30.8%)
+    - 'cls_token': True by default, whether to use cls token.
+    - 'multi_ratio_masking': False by default, whether to use multi-ratio masking strategy.
+        according to the original CAV-MAE-Sync experiments, multi-ratio masking leads to worse performance in all mask_ratio settings.
+    - 'global_local_losses': False by default, whether to use global and local losses.
+        if set to True, the model will use both cls token and meaned feature token for contrastive loss, which leads to entanglement of contrastive loss and mae loss.
+        According to original CAV-MAE-Sync experiments, disentangling the contrastive loss and mae loss is crucial as their grad sometimes conflict.
+    - 'keep_register_tokens': False by default, whether to keep register tokens in the final output.
     """
     def __init__(self, img_size=224, audio_length=1024, patch_size=16, in_chans=3,
                  embed_dim=768, modality_specific_depth=11, num_heads=12,
