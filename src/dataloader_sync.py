@@ -419,3 +419,38 @@ def train_collate_fn(batch):
     labels = torch.stack(labels)
     
     return fbanks, images, labels, video_ids, frame_indices
+
+
+def test_audioset():
+    audio_conf = {
+        'num_mel_bins': 128,
+        'freqm': 0,
+        'timem': 0,
+        'mixup': 0.5,
+        'mean': 0.0,
+        'std': 1.0,
+        'target_length': 416,
+        'mode': 'train',
+        'im_res': 224,
+        'augmentation': True,
+        'label_smooth': 0.1,
+        'dataset': 'audioset',
+    }
+    
+    dataset = AudiosetDataset('/home/chenyingying/tmp/cav-mae-sync/src/data_info/vgg/vggsound_test.json', audio_conf, label_csv='/home/chenyingying/tmp/cav-mae-sync/src/data_info/vgg/class_labels_indices_vgg.csv')
+    print(f"Dataset length: {len(dataset)}")
+    
+    for i in range(5):
+        fbanks, images, labels, video_ids, frame_indices = dataset[i]
+        print(f"Sample {i}:")
+        print(f"  fbanks shape: {fbanks.shape}")
+        print(f"  images shape: {images.shape}")
+        print(f"  labels shape: {labels.shape}")
+        print(f"  video_id: {video_ids}")
+        print(f"  frame_indices: {frame_indices}")
+        print("-" * 40)
+
+if __name__ == '__main__':
+    test_audioset()
+    print("Test completed.")
+    

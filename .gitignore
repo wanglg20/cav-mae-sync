@@ -1,3 +1,8 @@
 *.pth
 *.pyc
 *DS_Store
+src/data_info
+src/__pycache__
+src/exp
+src/ckpt
+src/wandb_offline

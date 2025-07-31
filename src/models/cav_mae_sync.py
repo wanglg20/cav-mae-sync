@@ -8,7 +8,7 @@ import torch.nn as nn
 import timm
 from timm.models.layers import to_2tuple, trunc_normal_, DropPath
 from timm.models.vision_transformer import Attention, Mlp, PatchEmbed, Block
-from .pos_embed import get_2d_sincos_pos_embed
+from models.pos_embed import get_2d_sincos_pos_embed
 
 class PatchEmbed(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, embed_dim=768):
@@ -72,7 +72,8 @@ class CAVMAE(nn.Module):
     - 'global_local_losses': False by default, whether to use global and local losses.
         if set to True, the model will use both cls token and meaned feature token for contrastive loss, which leads to entanglement of contrastive loss and mae loss.
         According to original CAV-MAE-Sync experiments, disentangling the contrastive loss and mae loss is crucial as their grad sometimes conflict.
-    - 'keep_register_tokens': False by default, whether to keep register tokens in the final output.
+    - 'keep_register_tokens': False by default, whether to keep register tokens before joint encoder. Register tokens are always discarded before decoder
+    - 'contrastive_heads': False by default, whether to use contrastive heads(an additional block) before contrastive loss.
     """
     def __init__(self, img_size=224, audio_length=1024, patch_size=16, in_chans=3,
                  embed_dim=768, modality_specific_depth=11, num_heads=12,
@@ -452,7 +453,9 @@ class CAVMAE(nn.Module):
     def forward_contrastive(self, audio_rep, video_rep, bidirect_contrast=False, mode='train'):
         audio_rep = torch.nn.functional.normalize(audio_rep, dim=-1)
         video_rep = torch.nn.functional.normalize(video_rep, dim=-1)
-
+        if len(audio_rep.shape) == 1:
+            audio_rep = audio_rep.unsqueeze(0)
+            video_rep = video_rep.unsqueeze(0)
         total = torch.mm(audio_rep, torch.transpose(video_rep, 0, 1)) / 0.05
 
         if mode == 'train':
