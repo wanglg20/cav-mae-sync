@@ -246,7 +246,7 @@ def validate(audio_model, val_loader, args, local_rank):
     device = torch.device(f'cuda:{local_rank}')
     A_loss, A_loss_mae, A_loss_mae_a, A_loss_mae_v, A_loss_c, A_c_acc = [], [], [], [], [], []
     with torch.no_grad():
-        for i, (a_input, v_input, _) in enumerate(val_loader):
+        for i, (a_input, v_input, _, _, _) in enumerate(val_loader):
             a_input = a_input.to(device)
             v_input = v_input.to(device)
             with autocast():

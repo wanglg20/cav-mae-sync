@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0,1,2,3
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6
 
 
 model=cav-mae
@@ -34,7 +34,7 @@ cd /home/chenyingying/tmp/cav-mae-sync/src
 exp_dir=./exp/pretrain-cavmae-sync-${dataset}-lr${lr}-bs${batch_size}-norm${norm_pix_loss}-c${contrast_loss_weight}-tp${tr_pos}-mr-${mask_mode}-${masking_ratio}
 mkdir -p $exp_dir
 
-PYTHONWARNINGS=ignore torchrun --nproc_per_node=4 run_cavmae_sync_pretrain.py --model ${model} --dataset ${dataset} \
+PYTHONWARNINGS=ignore torchrun --nproc_per_node=7 run_cavmae_sync_pretrain.py --model ${model} --dataset ${dataset} \
 --data-train ${tr_data} --data-val ${te_data} --exp-dir $exp_dir \
 --label-csv ${label_csv} --n_class 308 \
 --lr $lr --n-epochs ${epoch} --batch-size $batch_size --save_model True \

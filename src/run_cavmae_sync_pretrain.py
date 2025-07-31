@@ -21,7 +21,7 @@ sys.path.append(basepath)
 import dataloader_sync as dataloader_sync
 from models.cav_mae_sync import CAVMAE 
 import numpy as np
-from traintest_cavmae import train
+from cavmae_sync_train_engine import train
 
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
